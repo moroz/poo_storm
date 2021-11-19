@@ -49,7 +49,8 @@ defmodule PooStorm.MixProject do
       {:jason, "~> 1.2"},
       {:plug_cowboy, "~> 2.5"},
       {:absinthe, "~> 1.6"},
-      {:absinthe_plug, "~> 1.5.3"}
+      {:absinthe_plug, "~> 1.5.3"},
+      {:ecto_network, "~> 1.3"}
     ]
   end
 
