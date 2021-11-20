@@ -10,12 +10,15 @@ defmodule PooStormWeb.Api.Types.Comments do
     field :remote_ip, :string
     field :inserted_at, non_null(:datetime)
     field :updated_at, non_null(:datetime)
+    field :website, :string
   end
 
   input_object :comment_input do
     field :body, non_null(:string)
     field :signature, non_null(:string)
     field :url, non_null(:string)
+    field :email, non_null(:string)
+    field :website, :string
   end
 
   object :comment_queries do

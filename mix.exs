@@ -51,7 +51,8 @@ defmodule PooStorm.MixProject do
       {:absinthe, "~> 1.6"},
       {:absinthe_plug, "~> 1.5.3"},
       {:ecto_network, "~> 1.3"},
-      {:cors_plug, "~> 2.0"}
+      {:cors_plug, "~> 2.0"},
+      {:email_tld_validator, "~> 0.1"}
     ]
   end
 
