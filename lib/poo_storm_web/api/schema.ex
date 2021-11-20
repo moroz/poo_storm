@@ -7,4 +7,8 @@ defmodule PooStormWeb.Api.Schema do
   query do
     import_fields(:comment_queries)
   end
+
+  mutation do
+    import_fields(:comment_mutations)
+  end
 end

@@ -21,6 +21,13 @@ defmodule PooStorm.Comments do
     Repo.all(Comment)
   end
 
+  def list_comments_by_url(url) do
+    Comment
+    |> where([c], c.url == ^url)
+    |> order_by([c], desc: c.inserted_at)
+    |> Repo.all()
+  end
+
   @doc """
   Gets a single comment.
 

@@ -19,5 +19,17 @@ defmodule PooStorm.Comments.Comment do
     comment
     |> cast(attrs, @cast)
     |> validate_required(@required)
+    |> validate_url()
+  end
+
+  defp validate_url(changeset) do
+    case get_change(changeset, :url) do
+      nil ->
+        changeset
+
+      url ->
+        parsed = URI.parse(url)
+        put_change(changeset, :url, parsed.path)
+    end
   end
 end
