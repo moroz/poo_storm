@@ -5,5 +5,6 @@ defmodule PooStormWeb.Api.Schema do
   import_types(PooStormWeb.Api.Types.Comments)
 
   query do
+    import_fields(:comment_queries)
   end
 end
