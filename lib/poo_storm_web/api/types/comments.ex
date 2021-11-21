@@ -2,9 +2,19 @@ defmodule PooStormWeb.Api.Types.Comments do
   use Absinthe.Schema.Notation
   alias PooStormWeb.Api.CommentResolvers
 
+  enum :body_format do
+    value(:raw)
+    value(:markdown)
+  end
+
   object :comment do
     field :id, non_null(:id)
-    field :body, non_null(:string)
+
+    field :body, non_null(:string) do
+      arg(:format, non_null(:body_format), default_value: :markdown)
+      resolve(&CommentResolvers.resolve_body/3)
+    end
+
     field :signature, non_null(:string)
     field :url, non_null(:string)
     field :remote_ip, :string
