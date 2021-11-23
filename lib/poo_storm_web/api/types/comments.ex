@@ -29,6 +29,13 @@ defmodule PooStormWeb.Api.Types.Comments do
     field :url, non_null(:string)
     field :email, non_null(:string)
     field :website, :string
+    field :i_am_a_robot, :boolean
+  end
+
+  object :comment_mutation_result do
+    field :success, non_null(:boolean)
+    field :errors, :json
+    field :data, :comment
   end
 
   object :comment_queries do
@@ -39,9 +46,10 @@ defmodule PooStormWeb.Api.Types.Comments do
   end
 
   object :comment_mutations do
-    field :create_comment, :comment do
+    field :create_comment, non_null(:comment_mutation_result) do
       arg(:input, non_null(:comment_input))
       resolve(&CommentResolvers.create_comment/2)
+      middleware(PooStormWeb.Api.Middleware.TransformErrors)
     end
   end
 end

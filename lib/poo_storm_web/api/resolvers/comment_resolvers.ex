@@ -7,8 +7,14 @@ defmodule PooStormWeb.Api.CommentResolvers do
     {:ok, Comments.list_comments_by_url(url)}
   end
 
+  def create_comment(%{input: %{i_am_a_robot: true}}, _) do
+    {:error, "We are sorry, but the service is currently only available to humans."}
+  end
+
   def create_comment(%{input: params}, _) do
-    Comments.create_comment(params)
+    with {:ok, comment} <- Comments.create_comment(params) do
+      {:ok, %{success: true, data: comment}}
+    end
   end
 
   def resolve_body(%Comment{body: body}, %{format: :raw}, _) do

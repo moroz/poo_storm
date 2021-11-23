@@ -54,7 +54,8 @@ defmodule PooStorm.MixProject do
       {:cors_plug, "~> 2.0"},
       {:email_tld_validator, "~> 0.1"},
       {:html_sanitize_ex, "~> 1.4"},
-      {:earmark, "~> 1.4"}
+      {:earmark, "~> 1.4"},
+      {:ex_machina, "~> 2.7"}
     ]
   end
 

@@ -23,6 +23,7 @@ defmodule PooStorm.Comments.Comment do
     |> cast(attrs, @cast)
     |> validate_required(@required)
     |> validate_url()
+    |> EmailTldValidator.Ecto.validate_email()
   end
 
   defp validate_url(changeset) do
@@ -32,7 +33,7 @@ defmodule PooStorm.Comments.Comment do
 
       url ->
         parsed = URI.parse(url)
-        put_change(changeset, :url, parsed.path)
+        put_change(changeset, :url, parsed.path || "/")
     end
   end
 
