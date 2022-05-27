@@ -24,6 +24,7 @@ defmodule PooStorm.DataCase do
       import Ecto.Changeset
       import Ecto.Query
       import PooStorm.DataCase
+      import PooStorm.Factory
     end
   end
 

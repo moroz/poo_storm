@@ -69,3 +69,14 @@ config :phoenix, :stacktrace_depth, 20
 
 # Initialize plugs at runtime for faster development compilation
 config :phoenix, :plug_init_mode, :runtime
+
+if System.get_env("MAILER_ENABLE_SMTP") == "true" do
+  config :poo_storm, PooStorm.Mailer,
+    adapter: Swoosh.Adapters.SMTP,
+    username: System.get_env("MAILER_USERNAME"),
+    password: System.get_env("MAILER_PASSWORD"),
+    relay: System.get_env("MAILER_DOMAIN"),
+    ssl: true,
+    tls: :always,
+    port: 587
+end

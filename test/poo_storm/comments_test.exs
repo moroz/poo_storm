@@ -3,10 +3,12 @@ defmodule PooStorm.CommentsTest do
 
   alias PooStorm.Comments
 
+  def comment_fixture(attrs \\ %{}) do
+    insert(:comment, attrs)
+  end
+
   describe "comments" do
     alias PooStorm.Comments.Comment
-
-    import PooStorm.CommentsFixtures
 
     @invalid_attrs %{body: nil, remote_ip: nil, signature: nil}
 
@@ -21,12 +23,12 @@ defmodule PooStorm.CommentsTest do
     end
 
     test "create_comment/1 with valid data creates a comment" do
-      valid_attrs = %{body: "some body", remote_ip: "some remote_ip", signature: "some signature"}
+      valid_attrs = params_for(:comment, remote_ip: "127.0.0.1")
 
       assert {:ok, %Comment{} = comment} = Comments.create_comment(valid_attrs)
-      assert comment.body == "some body"
-      assert comment.remote_ip == "some remote_ip"
-      assert comment.signature == "some signature"
+      assert comment.body == valid_attrs.body
+      assert %Postgrex.INET{address: {127, 0, 0, 1}} = comment.remote_ip
+      assert comment.signature == valid_attrs.signature
     end
 
     test "create_comment/1 with invalid data returns error changeset" do
@@ -35,11 +37,16 @@ defmodule PooStorm.CommentsTest do
 
     test "update_comment/2 with valid data updates the comment" do
       comment = comment_fixture()
-      update_attrs = %{body: "some updated body", remote_ip: "some updated remote_ip", signature: "some updated signature"}
+
+      update_attrs = %{
+        body: "some updated body",
+        remote_ip: "8.8.8.8",
+        signature: "some updated signature"
+      }
 
       assert {:ok, %Comment{} = comment} = Comments.update_comment(comment, update_attrs)
       assert comment.body == "some updated body"
-      assert comment.remote_ip == "some updated remote_ip"
+      assert %Postgrex.INET{address: {8, 8, 8, 8}} = comment.remote_ip
       assert comment.signature == "some updated signature"
     end
 

@@ -3,10 +3,11 @@ defmodule PooStorm.Factory do
 
   def comment_factory do
     %PooStorm.Comments.Comment{
-      signature: "Yo it's me",
+      signature: "joe",
       body: "Test test",
       email: "user@example.com",
-      url: "http://moroz.dev"
+      url: "http://moroz.dev",
+      remote_ip: "8.8.8.8"
     }
   end
 end

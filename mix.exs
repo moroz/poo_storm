@@ -55,7 +55,8 @@ defmodule PooStorm.MixProject do
       {:email_tld_validator, "~> 0.1"},
       {:html_sanitize_ex, "~> 1.4"},
       {:earmark, "~> 1.4"},
-      {:ex_machina, "~> 2.7"}
+      {:ex_machina, "~> 2.7"},
+      {:gen_smtp, ">= 0.0.0"}
     ]
   end
 

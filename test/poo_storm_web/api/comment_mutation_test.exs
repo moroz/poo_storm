@@ -25,11 +25,15 @@ defmodule PooStormWeb.Api.CommentMutationTest do
   }
   """
 
+  def api_params(attrs \\ %{}) do
+    params_for(:comment, attrs) |> Map.delete(:remote_ip)
+  end
+
   describe "createComment mutation" do
     test "returns an error and does not create comment when i_am_a_robot is true" do
       assert Repo.count(Comment) == 0
 
-      params = params_for(:comment)
+      params = api_params()
       vars = %{input: Map.put(params, :i_am_a_robot, true)}
 
       %{"createComment" => %{"success" => false, "errors" => %{"message" => msg}}} =
@@ -43,7 +47,7 @@ defmodule PooStormWeb.Api.CommentMutationTest do
     test "returns success and creates a comment for valid params" do
       assert Repo.count(Comment) == 0
 
-      params = params_for(:comment, url: "/test")
+      params = api_params(url: "/test")
       vars = %{input: params}
 
       %{"createComment" => %{"success" => true, "errors" => nil, "data" => actual}} =
@@ -57,7 +61,7 @@ defmodule PooStormWeb.Api.CommentMutationTest do
     end
 
     test "returns error and does not create comment with invalid params" do
-      params = params_for(:comment, url: "/test", signature: "", email: "user@invalid")
+      params = api_params(url: "/test", signature: "", email: "user@invalid")
       vars = %{input: params}
 
       %{"createComment" => %{"success" => false, "errors" => errors, "data" => nil}} =
