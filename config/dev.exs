@@ -76,7 +76,7 @@ if System.get_env("MAILER_ENABLE_SMTP") == "true" do
     username: System.get_env("MAILER_USERNAME"),
     password: System.get_env("MAILER_PASSWORD"),
     relay: System.get_env("MAILER_DOMAIN"),
-    ssl: true,
     tls: :always,
+    auth: :always,
     port: 587
 end

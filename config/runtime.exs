@@ -64,7 +64,11 @@ if config_env() == :prod do
     username: System.get_env("MAILER_USERNAME"),
     password: System.get_env("MAILER_PASSWORD"),
     relay: System.get_env("MAILER_DOMAIN"),
-    ssl: true,
     tls: :always,
-    port: 587
+    auth: :always,
+    port: 587,
+    sender: {System.get_env("MAILER_SENDER_NAME"), System.get_env("MAILER_USERNAME")},
+    recipient:
+      {System.get_env("MAILER_RECIPIENT_NAME"), System.get_env("MAILER_RECIPIENT_EMAIL")},
+    website_url: System.get_env("WEBSITE_PUBLIC_URL")
 end

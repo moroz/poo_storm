@@ -13,6 +13,7 @@ defmodule PooStormWeb.Api.CommentResolvers do
 
   def create_comment(%{input: params}, _) do
     with {:ok, comment} <- Comments.create_comment(params) do
+      Task.start(fn -> Comments.send_comment_notification(comment) end)
       {:ok, %{success: true, data: comment}}
     end
   end
