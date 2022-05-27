@@ -9,3 +9,16 @@
 #
 # We recommend using the bang functions (`insert!`, `update!`
 # and so on) as they will fail if something goes wrong.
+
+alias PooStorm.Repo
+alias PooStorm.Comments.Comment
+
+Repo.delete_all(Comment)
+
+Repo.insert!(%Comment{
+  body: "Karmapa chenno",
+  remote_ip: %Postgrex.INET{address: {127, 0, 0, 1}},
+  signature: "Test signature",
+  url: "/blog/the-manifesto",
+  email: "user@example.com"
+})
