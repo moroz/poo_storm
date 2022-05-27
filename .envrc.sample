@@ -1,0 +1,5 @@
+export MAILER_USERNAME=user@example.com
+export MAILER_PASSWORD=P455W0rd!
+export MAILER_SENDER_NAME="John Sender"
+export MAILER_RECIPIENT_EMAIL="webmaster@poo-storm.com"
+export MAILER_DOMAIL="smtp.gmail.com"
