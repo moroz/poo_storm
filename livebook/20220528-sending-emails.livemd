@@ -1,0 +1,28 @@
+# Sending comments
+
+## Section
+
+```elixir
+import IEx.Helpers
+import_file(".iex.exs")
+```
+
+```elixir
+comment = Comments.get_last_comment()
+```
+
+```elixir
+recompile()
+```
+
+```elixir
+email = PooStorm.CommentEmail.new_comment(comment)
+```
+
+```elixir
+h(Plug.Conn.put_resp_content_type())
+```
+
+```elixir
+email.html_body
+```

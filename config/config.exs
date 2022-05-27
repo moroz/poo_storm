@@ -39,7 +39,8 @@ config :phoenix, :json_library, Jason
 
 config :poo_storm, PooStorm.Mailer,
   sender: {System.get_env("MAILER_SENDER_NAME"), System.get_env("MAILER_USERNAME")},
-  recipient: {System.get_env("MAILER_RECIPIENT_NAME"), System.get_env("MAILER_RECIPIENT_EMAIL")}
+  recipient: {System.get_env("MAILER_RECIPIENT_NAME"), System.get_env("MAILER_RECIPIENT_EMAIL")},
+  website_url: System.get_env("WEBSITE_PUBLIC_URL")
 
 # Import environment specific config. This must remain at the bottom
 # of this file so it overrides the configuration defined above.

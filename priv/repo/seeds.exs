@@ -20,5 +20,6 @@ Repo.insert!(%Comment{
   remote_ip: %Postgrex.INET{address: {127, 0, 0, 1}},
   signature: "Test signature",
   url: "/blog/the-manifesto",
-  email: "user@example.com"
+  email: "user@example.com",
+  website: "https://moroz.dev"
 })

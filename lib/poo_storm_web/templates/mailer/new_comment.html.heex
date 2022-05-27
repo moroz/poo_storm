@@ -1,0 +1,12 @@
+<h1>New comment</h1>
+
+<p><strong><%= @comment.signature %> (<%= @comment.email %>)</strong> posted a new comment at the URL: <a href={"#{@website_url}#{@comment.url}"} target="_blank"><%= @comment.url %></a>.</p>
+
+<%= if @comment.website do %>
+<p>The poster's website: <a href={@comment.website}><%= @comment.website %></a></p>
+<% end %>
+
+<h2>Comment</h2>
+
+<%= raw render_markdown_to_safe_html(@comment.body) %>
+

@@ -47,6 +47,7 @@ defmodule PooStormWeb.Router do
       pipe_through :browser
 
       forward "/mailbox", Plug.Swoosh.MailboxPreview
+      get "/emails/new_comment", PooStormWeb.EmailPreviewController, :new_comment
     end
   end
 end
