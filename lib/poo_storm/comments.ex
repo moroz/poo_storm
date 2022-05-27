@@ -8,6 +8,12 @@ defmodule PooStorm.Comments do
 
   alias PooStorm.Comments.Comment
 
+  def get_last_comment do
+    Comment
+    |> last
+    |> Repo.one()
+  end
+
   @doc """
   Returns the list of comments.
 
