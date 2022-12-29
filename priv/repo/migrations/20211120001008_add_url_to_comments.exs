@@ -2,7 +2,7 @@ defmodule PooStorm.Repo.Migrations.AddUrlToComments do
   use Ecto.Migration
 
   def change do
-    execute "create extension if not exists citext with schema public"
+    execute "create extension if not exists citext with schema heroku_ext"
 
     alter table(:comments) do
       add :url, :string, null: false
